@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css_dok/basic.css">
+	<link rel="stylesheet" href="css_dok/grid.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Monomakh&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+		rel="stylesheet">
+    <title>Document</title>
+    <style>
+		.monomakh-regular {
+			font-family: "Monomakh", system-ui;
+			font-weight: 400;
+			font-style: normal;
+		}
+
+		body {
+			font-family: Monomakh;
+			font-size: 1em;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+			position: relative;
+		}
+
+		nav {
+			height: 3em;
+			line-height: 1;
+			top: 0;
+			position: sticky;
+			z-index: 10;
+		}
+
+		nav button.btnNav {
+			display: none;
+			width: 3rem;
+			height: 3rem;
+			margin: 0.5rem auto;
+			border: 2px solid white;
+			background-color: white;
+			border-radius: 0.5rem;
+			background-image: url(svg/menu.svg);
+			background-repeat: no-repeat;
+			background-position: center;
+			font-size: 0;
+			cursor: pointer;
+		}
+		#logo {
+			display: block;
+			width: 3rem;
+			height: 3rem;
+			margin: auto;
+			background-color: black;
+			background-image: url(svg/Archaeoshild_logo.webp);
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: 3rem 3rem;
+			font-size: 0;
+			cursor: pointer;
+		}
+
+		nav ul {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			z-index: 2;
+			background-color: black;
+		}
+
+		nav ul li {
+			display: block;
+
+		}
+
+		nav ul ul {
+			display: none;
+			position: absolute;
+			/*top:100%;*/
+			left: 0;
+			width: 100%;
+			height: auto;
+			z-index: 3;
+			background-color: black;
+		}
+
+		nav>ul>li {
+			flex-grow: 1;
+			flex-shrink: 0;
+			text-align: center;
+			border-right: 1px solid white;
+			text-decoration: none;
+		}
+
+		nav>ul>li:last-of-type {
+			border-right: none;
+		}
+
+		nav a {
+			display: block;
+			width: 100%;
+			height: 100%;
+			padding: 1em;
+			text-decoration: none;
+			color: #f1eddd;
+		}
+
+		nav li:hover>ul {
+			display: block;
+		}
+
+		nav a:hover {
+			background-color: #ccc;
+			color: black;
+			transition: color 0.7s;
+		}
+
+		@media screen and (max-width:48em) {
+			nav button.btnNav {
+				display: block;
+			}
+
+			nav>ul {
+				display: none;
+			}
+
+			nav>ul.visible {
+				display: block;
+			}
+
+			nav ul ul {
+				position: relative;
+				display: block;
+			}
+
+
+		}
+
+    </style>
+    <script>
+		document.addEventListener("DOMContentLoaded", () => {
+			const btn = document.querySelector("nav button.btnNav");
+			btn.addEventListener("click", () => {
+				const navliste = document.querySelector("nav > ul");
+				navliste.classList.toggle("visible");
+			});
+
+			const navelemente = document.querySelectorAll("nav a");
+			for (let i = 0; i < navelemente.length; i++) {
+				navelemente[i].addEventListener("click", () => {
+					const navliste = document.querySelector("nav > ul");
+					navliste.classList.toggle("visible");
+				});
+			}
+		});
+
+    </script>
+</head>
+<body>
+    <main>
+		<nav>
+			<button type="button" class="btnNav">Nav ein/aus</button>
+			<ul>
+				<li id="logo"><a href="#" data-nav="logo">platz für logo</a></li>
+				<li><a href="index.html#home" data-nav="home">Home</a></li>
+				<li><a href="index.html#meineErsteSprungmarke" data-nav="aboutus">Über uns</a></li>
+				<li><a href="index.html#aktuelles" data-nav="aktuelles">Aktuelles</a></li>
+				<li>
+					<a href="index.html#diensleistungen" data-nav="diensleistungen">Dienstleistungen</a>
+					<ul>
+						<li><a href="index.html#rettungsgrabung" data-nav="rettungsgrabung">Rettungsgrabung</a></li>
+						<li><a href="index.html#Restaurierung" data-nav="Restaurierung">Restaurierung</a></li>
+						<li><a href="index.html#Dokumentation" data-nav="Dokumentation">Archäologische<br> Dokumentation</a></li>
+					</ul>
+				</li>
+				<li><a href="index.html#reference" data-nav="reference">Reference</a></li>
+				<li><a href="index.html#team" data-nav="team">Team</a></li>
+				<li><a href="index.html#kontakt" data-nav="kontakt">Kontakt</a></li>
+				<li><a href="impressum.html" data-nav="Impressum">Impressum</a></li>
+			</ul>
+		</nav>
+        
+    <h1>Impressum</h1><p>Angaben gemäß § 5 DDG</p><p>Max Muster - Musterberuf<br> 
+        c/o Beispielbüro<br> 
+        Musterweg<br> 
+        12345 Musterstadt <br> 
+        </p><p> <strong>Vertreten durch: </strong><br>
+        Max Muster<br>
+        </p><p><strong>Kontakt:</strong> <br>
+        Telefon: 01234-789456<br>
+        Fax: 1234-56789<br>
+        E-Mail: <a href='mailto:max@muster.de'>max@muster.de</a></br></p><p><strong>Umsatzsteuer-ID: </strong> <br>
+        Umsatzsteuer-Identifikationsnummer gemäß §27a Umsatzsteuergesetz: Musterustid.<br><br>
+        <strong>Wirtschafts-ID: </strong><br>
+        Musterwirtschaftsid<br>
+        </p><p><strong>Aufsichtsbehörde:</strong><br>
+        Musteraufsicht Musterstadt<br></p><p><strong>Haftungsausschluss: </strong><br><br><strong>Haftung für Inhalte</strong><br><br>
+        Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.<br><br><strong>Haftung für Links</strong><br><br>
+        Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p><br> 
+        Impressum von <a href="https://websitewissen.com" rel="dofollow">WebsiteWissen.com</a>, dem Ratgeber für <a href="https://websitewissen.com/wordpress-website-erstellen" rel="dofollow">WordPress-Websites</a>, <a href="https://websitewissen.com/wordpress-hosting-vergleich" rel="dofollow">WordPress-Hosting</a> und <a href="https://websitewissen.com/website-kosten" rel="dofollow">Website-Kosten</a> nach einem Muster von <a href="https://www.kanzlei-hasselbach.de/" rel="dofollow">Kanzlei Hasselbach Rechtsanwälte</a>.
+    </main>
+</body>
+</html>

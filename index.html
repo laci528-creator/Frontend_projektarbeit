@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+	<title>Projekt_Laszlo_Haraszti</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css_dok/basic.css">
+	<link rel="stylesheet" href="css_dok/grid.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Monomakh&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+		rel="stylesheet">
+
+	<style>
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+		}
+
+		body {
+			background-color: #474343;
+			max-width: 1920px;
+			margin: 0 auto;
+			font-family: "Monomakh", system-ui;
+			font-size: 1em;
+			padding: 0;
+			position: relative;
+		}
+
+		nav {
+			line-height: 1;
+			top: 0;
+			position: sticky;
+			z-index: 10;
+			background-color: black;
+		}
+
+		nav button.btnNav {
+			display: none;
+			width: 3rem;
+			height: 3rem;
+			margin: 0.5rem auto;
+			border: 2px solid white;
+			background-color: white;
+			border-radius: 0.5rem;
+			background-image: url("svg/menu.svg");
+			background-repeat: no-repeat;
+			background-position: center;
+			font-size: 0;
+			cursor: pointer;
+		}
+
+		#logo a {
+			display: block;
+			width: 3rem;
+			height: 3rem;
+			margin: auto;
+			background-color: black;
+			background-image: url("svg/archaeo_shield_small.jpg");
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: 3rem 3rem;
+			font-size: 0;
+			cursor: pointer;
+			padding: 0;
+		}
+
+		nav ul {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			z-index: 2;
+			background-color: black;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		nav ul li {
+			display: block;
+			position: relative;
+		}
+
+		nav ul ul {
+			display: none;
+			position: absolute;
+			left: 0;
+			width: 100%;
+			height: auto;
+			z-index: 3;
+			background-color: black;
+			padding: 0;
+			list-style: none;
+		}
+
+		nav>ul>li {
+			flex-grow: 1;
+			flex-shrink: 0;
+			text-align: center;
+			border-right: 1px solid white;
+		}
+
+		nav>ul>li:last-of-type {
+			border-right: none;
+		}
+
+		nav a {
+			display: block;
+			width: 100%;
+			height: 100%;
+			padding: 1em;
+			text-decoration: none;
+			color: #f1eddd;
+		}
+
+		nav li:hover>ul {
+			display: block;
+		}
+
+		nav a:hover {
+			background-color: #ccc;
+			color: black;
+			transition: color 0.7s;
+		}
+
+		@media screen and (max-width:48em) {
+			nav button.btnNav {
+				display: block;
+			}
+
+			nav>ul {
+				display: none;
+				flex-direction: column;
+			}
+
+			nav>ul.visible {
+				display: flex;
+			}
+
+			nav ul ul {
+				position: relative;
+				display: block;
+			}
+
+			nav>ul>li {
+				border-right: none;
+				border-bottom: 1px solid white;
+				width: 100%;
+			}
+		}
+
+		#pic {
+			display: block;
+			object-fit: cover;
+			margin: auto;
+			width: 100%;
+			height: 40em;
+		}
+
+		.bildergalerie {
+			position: relative;
+			display: block;
+			margin: auto;
+			width: 100%;
+		}
+
+		.bildergalerie .btn1,
+		.bildergalerie .btn2 {
+			background-color: rgba(0, 0, 0, 0.3);
+			position: absolute;
+			z-index: 10;
+			top: 50%;
+			font-size: 0;
+			border: 1px solid grey;
+			border-radius: 0.5rem;
+			width: 3rem;
+			height: 3rem;
+			background-repeat: no-repeat;
+			background-position: center;
+			cursor: pointer;
+		}
+
+		.bildergalerie .btn1 {
+			left: 2%;
+			background-image: url("svg/arrow_back.svg");
+		}
+
+		.bildergalerie .btn2 {
+			right: 2%;
+			background-image: url("svg/arrow_forward.svg");
+		}
+
+		.uber_uns {
+			color: #f1eddd;
+			background-color: black;
+			padding: 2em;
+		}
+
+		.uber_uns_text>h2 {
+			text-align: center;
+		}
+
+		#home_text {
+			justify-content: center;
+			align-items: center;
+		}
+
+		.container_nachricht {
+			background-image: url("fotos/hintergrund_photo.jpg");
+			display: block;
+		}
+
+		.nachricht_text {
+			display: block;
+			position: relative;
+			text-align: center;
+			padding: 2em;
+		}
+
+		.flexbox0 {
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		.flexbox {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid gray;
+			background-color: #eeeee4;
+			position: relative;
+			margin: 3em;
+			width: 20em;
+			height: 20em;
+			border-radius: 0.5em;
+			box-shadow: 10px 10px 5px black;
+			transition: height 1s, width 1s;
+		}
+
+		.flexbox:hover {
+			background-color: gray;
+			box-shadow: 15px 15px 10px #eeeee4;
+		}
+
+		.pic_nachricht {
+			aspect-ratio: 1;
+			width: 12em;
+			margin: 1em;
+			object-fit: cover;
+			border-radius: 0.2em;
+			border: 1px solid black;
+		}
+
+		.word {
+			background-color: #1d2016;
+			color: #f1eddd;
+			margin: 0.2em 1em;
+			text-align: center;
+		}
+
+		.leistung_haupttitel {
+			background-color: black;
+			color: #f1eddd;
+			z-index: 9;
+			text-align: center;
+			padding: 2em;
+		}
+
+		.leistung_container,
+		.leistung_container1 {
+			display: flex;
+			flex-direction: row;
+			height: auto;
+			min-height: 33em;
+			position: relative;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: center;
+			gap: 2em;
+			padding: 2em;
+		}
+
+		.leistung_container {
+			background-color: gray;
+		}
+
+		.leistung_container1 {
+			background-color: #fbfaf3;
+		}
+
+		.leistung_pic {
+			aspect-ratio: 1.5;
+			object-fit: cover;
+			width: 30em;
+			max-width: 100%;
+			border-radius: 0.5em;
+			box-shadow: 10px 10px 5px black;
+		}
+
+		.linke_text,
+		.rechte_text {
+			width: 30em;
+			max-width: 100%;
+		}
+
+		.rechte_text {
+			text-align: right;
+		}
+
+		.team_container {
+			position: relative;
+			display: block;
+			background-image: url("bilder_galerie/grabungsarbeit_foto.jpg");
+			background-position: center;
+			background-repeat: repeat;
+			width: 100%;
+			min-height: 40em;
+		}
+
+		.team_boxcontainer {
+			position: relative;
+			background-color: rgba(171, 222, 241, 0.2);
+			margin: 3em;
+			display: flex;
+			flex-wrap: wrap;
+			border-radius: 0.5em;
+			border: 0.5px solid black;
+		}
+
+		.team_title {
+			position: relative;
+			display: block;
+			padding: 1em;
+			width: 100%;
+		}
+
+		.team_title h2 {
+			text-align: center;
+		}
+
+		.teambox {
+			display: block;
+			position: relative;
+			color: black;
+			padding: 3em;
+		}
+
+		.reference_box {
+			background-color: gray;
+			padding: 1em;
+			position: relative;
+		}
+
+		.reference_ht {
+			display: block;
+			text-align: center;
+			padding: 2em;
+		}
+
+		.table_wrapper {
+			overflow-x: auto;
+		}
+
+		table {
+			border-collapse: collapse;
+			border: 2px solid black;
+			width: 60%;
+			height: auto;
+			background-color: rgb(151, 163, 163);
+			margin: 4em auto 0;
+		}
+
+		@media screen and (max-width:48em) {
+			table {
+				width: 100%;
+			}
+		}
+
+		th,
+		td {
+			padding: 0.5em 1em;
+			border: 2px solid black;
+		}
+
+		thead tr th:first-of-type,
+		tbody tr td:first-of-type {
+			position: sticky;
+			z-index: 1;
+			left: 0;
+			background-color: #eee;
+		}
+
+		.formular_volontaere {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			color: #f1eddd;
+			background-color: black;
+			position: relative;
+			padding-top: 2em;
+			align-items: center;
+			justify-content: center;
+			gap: 4em;
+		}
+
+		.formular_text {
+			width: 40em;
+			max-width: 100%;
+		}
+
+		.formular {
+			display: none;
+			width: 40em;
+			max-width: 100%;
+		}
+
+		.logo_img {
+			display: block;
+			width: 15rem;
+			height: 15rem;
+			border: 2px solid white;
+			border-radius: 1rem;
+			background-color: black;
+			background-image: url("svg/archaeo_shield_logo.png");
+			background-repeat: no-repeat;
+			background-size: 15rem 15rem;
+			font-size: 0;
+			margin: 2rem auto;
+			cursor: pointer;
+		}
+
+		.kontakt_container {
+			position: relative;
+			display: flex;
+			flex-direction: row;
+			color: #f1eddd;
+			background-color: black;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			height: auto;
+			text-align: right;
+			padding: 2em;
+		}
+
+		.socialm_contener {
+			display: flex;
+			margin: 1em;
+			gap: 0.5em;
+		}
+
+		.socialm_contener a {
+			display: block;
+			width: 3rem;
+			height: 3rem;
+			border: 2px solid white;
+			background-color: white;
+			border-radius: 0.5rem;
+			background-image: url("svg/facebook_icon.svg");
+			background-repeat: no-repeat;
+			background-size: 3rem 3rem;
+			font-size: 0;
+			cursor: pointer;
+		}
+
+		.socialm_contener a:nth-of-type(2) {
+			background-image: url("svg/instagram_logo.png");
+		}
+
+		.socialm_contener a:nth-of-type(3) {
+			background-image: url("svg/linkedin-logo.png");
+		}
+	</style>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			const btn = document.querySelector("nav button.btnNav");
+			const navliste = document.querySelector("nav > ul");
+
+			if (btn && navliste) {
+				btn.addEventListener("click", () => {
+					navliste.classList.toggle("visible");
+				});
+			}
+
+			const navelemente = document.querySelectorAll("nav a");
+			navelemente.forEach((element) => {
+				element.addEventListener("click", () => {
+					if (window.innerWidth <= 768 && navliste) {
+						navliste.classList.remove("visible");
+					}
+				});
+			});
+
+		const bilder = [
+			"bilder_galerie/bild_1.jpg",
+			"bilder_galerie/bild_2.jpg",
+			"bilder_galerie/bild_3.jpg",
+			"bilder_galerie/bild_4.jpg",
+			"bilder_galerie/bild_5.jpg"
+		];
+		let bildzaehler = 0;
+	
+
+			const btnFWD = document.querySelector("#btnForward");
+			const btnBCK = document.querySelector("#btnBack");
+			const bild = document.querySelector("#pic");
+
+
+			if (btnFWD && bild) {
+				btnFWD.addEventListener("click", () => {
+					bildzaehler++;
+					if (bildzaehler === bilder.length) {
+						bildzaehler = 0;
+					}
+					bild.src = bilder[bildzaehler];
+				});
+			}
+
+			if (btnBCK && bild) {
+				btnBCK.addEventListener("click", () => {
+					bildzaehler--;
+					if (bildzaehler === -1) {
+						bildzaehler = bilder.length - 1;
+					}
+					bild.src = bilder[bildzaehler];
+				});
+			}
+		});
+	</script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+	<script>
+
+		$(document).ready(function () {
+			$("#flip").click(function () {
+				$("#panel").slideToggle("slow");
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<main>
+		<nav>
+			<button type="button" class="btnNav">Navigation ein/aus</button>
+			<ul>
+				<li id="logo"><a href="#home">Logo</a></li>
+				<li><a href="#home" data-nav="home">Home</a></li>
+				<li><a href="#ueber-uns" data-nav="aboutus">Über uns</a></li>
+				<li><a href="#aktuelles" data-nav="aktuelles">Aktuelles</a></li>
+				<li>
+					<a href="#dienstleistungen" data-nav="dienstleistungen">Dienstleistungen</a>
+					<ul>
+						<li><a href="#rettungsgrabung" data-nav="rettungsgrabung">Rettungsgrabung</a></li>
+						<li><a href="#restaurierung" data-nav="restaurierung">Restaurierung</a></li>
+						<li><a href="#dokumentation" data-nav="dokumentation">Archäologische Dokumentation</a></li>
+					</ul>
+				</li>
+				<li><a href="#referenzen" data-nav="referenzen">Referenzen</a></li>
+				<li><a href="#team" data-nav="team">Team</a></li>
+				<li><a href="#kontakt" data-nav="kontakt">Kontakt</a></li>
+				<li><a href="impressum.html" data-nav="impressum">Impressum</a></li>
+			</ul>
+		</nav>
+
+		<div class="bildergalerie" id="home">
+			<img src="bilder_galerie/bild_1.jpg" id="pic" alt="Archäologische Ausgrabung fotos">
+			<button class="btn1" type="button" id="btnBack" aria-label="Vorheriges Bild"></button>
+			<button class="btn2" type="button" id="btnForward" aria-label="Nächstes Bild"></button>
+		</div>
+
+		<div class="uber_uns" id="ueber-uns">
+			<div class="uber_uns_text">
+				<h2>Über uns</h2>
+			</div>
+			<br>
+			<div class="grid max" id="home_text">
+				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+					<p>Willkommen auf der Webseite von ArchaeoSchild! Unser Unternehmen ist der Erforschung und
+						Bewahrung der Vergangenheit verpflichtet. Unser Team aus erfahrenen Archäologen und
+						Restauratoren arbeitet mit Leidenschaft daran, wertvolle Relikte der Geschichte aufzudecken,
+						zu dokumentieren und für zukünftige Generationen zu erhalten. Unsere Haupttätigkeitsbereiche
+						umfassen archäologische Ausgrabungen, die Restaurierung von Funden sowie die Erstellung
+						archäologischer Dokumentationen.</p>
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+					<p>Ob es sich um vorgeschriebene Ausgrabungen vor Bauprojekten, wissenschaftliche Forschungen
+						oder den Schutz des kulturellen Erbes handelt, wir garantieren professionelle und präzise
+						Arbeit. Jede Ausgrabung wird sorgfältig vorbereitet und erforscht, um mit höchster Präzision
+						und Effizienz zu arbeiten. Wir legen großen Wert darauf, dass die entdeckten Funde und ihr
+						archäologischer Kontext angemessen dokumentiert und bewahrt werden.</p>
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+					<p>Unser Unternehmen nutzt moderne Technologien zur detaillierten Erfassung von Fundstellen und
+						Artefakten, darunter 3D-Scans, Photogrammetrie und traditionelle zeichnerische Dokumentation.
+						Unsere Arbeit liefert nicht nur eine Grundlage für wissenschaftliche Forschungen, sondern
+						spielt auch eine wichtige Rolle im Bereich des Denkmalschutzes und der musealen Präsentation.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="container_nachricht" id="aktuelles">
+			<div>
+				<h2 class="nachricht_text">Aktuelles aus unseren Ausgrabungen</h2>
+			</div>
+			<div class="flexbox0">
+				<div class="flexbox">
+					<time datetime="2025-02-14">14.02.2025</time>
+					<div><img class="pic_nachricht" src="bilder_galerie/romische_soldate.jpg" alt="Grab eines römischen Soldaten"></div>
+					<div>
+						<h4 class="word">Grab eines römischen Soldaten aus Makó</h4>
+					</div>
+				</div>
+				<div class="flexbox">
+					<time datetime="2025-01-25">25.01.2025</time>
+					<div><img class="pic_nachricht" src="bilder_galerie/emberabrazolas.jpg" alt="Darstellung eines Mannes aus Keramik"></div>
+					<div>
+						<h4 class="word">Männerdarstellung aus Keramik</h4>
+					</div>
+				</div>
+				<div class="flexbox">
+					<time datetime="2025-01-08">08.01.2025</time>
+					<div><img class="pic_nachricht" src="bilder_galerie/keramikwerkstadt.jpg" alt="Keramikwerkstatt von Makó"></div>
+					<div>
+						<h4 class="word">Keramikwerkstatt von Makó</h4>
+					</div>
+				</div>
+				<div class="flexbox">
+					<time datetime="2024-12-11">11.12.2024</time>
+					<div><img class="pic_nachricht" src="bilder_galerie/spatbronzezeitliche_keramik.jpg" alt="Spätbronzezeitliche Keramik"></div>
+					<div>
+						<h4 class="word">Spätbronzezeitliche Keramik</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="dropdown">
+			<h2 class="leistung_haupttitel" id="dienstleistungen">Unsere Leistungen</h2>
+		</div>
+
+		<div class="leistung_container">
+			<div class="rettungsgrabung_bild">
+				<img src="bilder_galerie/rettungsgrabung.jpg" id="pic5" class="leistung_pic" alt="Rettungsgrabung">
+			</div>
+			<div class="linke_text" id="rettungsgrabung">
+				<h3>Rettungsgrabung</h3>
+				<p>Trotz sorgfältiger Planung und Vorerhebungen kommt es immer wieder vor, dass Auftraggeber von
+					Bauvorhaben unvorbereitet mit der Auffindung archäologischer Fundstellen konfrontiert sind.
+					Wir sorgen für eine rasche und flexible Abwicklung der notwendigen bodendenkmalschützerischen
+					Maßnahmen, um Bauverzögerungen zu vermeiden.</p>
+			</div>
+		</div>
+
+		<div class="leistung_container1">
+			<div class="rechte_text" id="restaurierung">
+				<h3>Restaurierung</h3>
+				<p>Zu unseren Dienstleistungen gehört auch die Konservierung und Restaurierung archäologischer Funde.
+					Bereits an Ort und Stelle werden die Funde von ausgebildeten Restauratorinnen und Restauratoren
+					sicher dokumentiert und geborgen. Unsere Kunden können das ausgegrabene Fundmaterial dadurch in
+					lagerungsfähigem Zustand aufbewahren.</p>
+			</div>
+			<div class="rettungsgrabung_bild">
+				<img src="bilder_galerie/restaurierung.jpg" id="pic6" class="leistung_pic" alt="Restaurierung">
+			</div>
+		</div>
+
+		<div class="leistung_container">
+			<div class="Restaurierung_bild">
+				<img src="bilder_galerie/dokumentation.jpg" id="pic7" class="leistung_pic" alt="Archäologische Dokumentation">
+			</div>
+			<div class="linke_text" id="dokumentation">
+				<h3>Archäologische Dokumentation</h3>
+				<p>Neben den klassischen Dokumentationsformen wie Text, Zeichnung, Foto und Fotogrammetrie erfassen
+					wir Baudenkmäler auch mit einer 3D-Laserscan-Methode. Mit dieser Methode kann sehr schnell eine
+					dreidimensionale Punktwolke hoher Dichte erzeugt werden. Damit ist eine Kostenminimierung für
+					den Auftraggeber gewährleistet.</p>
+			</div>
+		</div>
+
+		<div class="team_container" id="team">
+			<div class="team_title">
+				<h2>Unser Team</h2>
+			</div>
+			<div class="team_boxcontainer">
+				<div class="teambox">
+					<h4>Mag. Max Mustermann</h4>
+					<h5>Archäologe<br>geschäftsführender Gesellschafter</h5>
+					<h6>Forschungsgebiet</h6>
+					<p>Spätbronzezeit, Hallstattzeit</p>
+				</div>
+				<div class="teambox">
+					<h4>Mag. Erika Musterfrau</h4>
+					<h5>Restauratorin</h5>
+					<h6>Forschungsgebiet</h6>
+					<p>Konservierung von Metallfunden</p>
+				</div>
+				<div class="teambox">
+					<h4>Dr. Anna Beispiel</h4>
+					<h5>Archäologin</h5>
+					<h6>Forschungsgebiet</h6>
+					<p>Römische Kaiserzeit</p>
+				</div>
+				<div class="teambox">
+					<h4>Dr. Anna Beispiel</h4>
+					<h5>Archäologin</h5>
+					<h6>Forschungsgebiet</h6>
+					<p>Römische Kaiserzeit</p>
+				</div>
+				<div class="teambox">
+					<h4>Dr. Anna Beispiel</h4>
+					<h5>Archäologin</h5>
+					<h6>Forschungsgebiet</h6>
+					<p>Römische Kaiserzeit</p>
+				</div>
+				<div class="teambox">
+					<h4>Dr. Anna Beispiel</h4>
+					<h5>Archäologin</h5>
+					<h6>Forschungsgebiet</h6>
+					<p>Römische Kaiserzeit</p>
+				</div>
+				<div class="teambox">
+					<h4>Dr. Anna Beispiel</h4>
+					<h5>Archäologin</h5>
+					<h6>Forschungsgebiet</h6>
+					<p>Römische Kaiserzeit</p>
+				</div>
+				<div class="teambox">
+					<h4>Dr. Anna Beispiel</h4>
+					<h5>Archäologin</h5>
+					<h6>Forschungsgebiet</h6>
+					<p>Römische Kaiserzeit</p>
+				</div>
+				<div class="teambox">
+					<h4>Dr. Anna Beispiel</h4>
+					<h5>Archäologin</h5>
+					<h6>Forschungsgebiet</h6>
+					<p>Römische Kaiserzeit</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="reference_box" id="referenzen">
+			<h3 class="reference_ht">Referenzen</h3>
+			<div class="table_wrapper">
+				<table>
+					<thead>
+						<tr>
+							<th scope="col">Ort</th>
+							<th scope="col">Archäologische Zeiten</th>
+							<th scope="col">Datum</th>
+							<th scope="col">Fundstelle</th>
+							<th scope="col">Ausgrabungsgebiet</th>
+							<th scope="col">Unterlagen</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Makó-Járandószék</td>
+							<td>Völkerwanderungszeit</td>
+							<td>2016</td>
+							<td>Siedlung</td>
+							<td>25.251 Quadratmeter</td>
+							<td><a href="bilder_galerie/52731_2013_Nyomtatott_dokumentacio.pdf">PDF-Dokument</a></td>
+						</tr>
+						<tr>
+							<td>Laa an der Thaya</td>
+							<td>Römische Kaiserzeit, Spätbronzezeit</td>
+							<td>2017–2018</td>
+							<td>Gräberfeld</td>
+							<td>520 Quadratmeter</td>
+							<td>PDF-Dokument</td>
+						</tr>
+						<tr>
+							<td>Hallstatt</td>
+							<td>Eisenzeit</td>
+							<td>2019</td>
+							<td>Gräberfeld und Siedlung</td>
+							<td>214 Quadratmeter</td>
+							<td>PDF-Dokument</td>
+						</tr>
+						<tr>
+							<td>Maroslele-Pana</td>
+							<td>Mittel- und Jungneolithikum</td>
+							<td>2015</td>
+							<td>Gräberfeld</td>
+							<td>5.321 Quadratmeter</td>
+							<td>PDF-Dokument</td>
+						</tr>
+						<tr>
+							<td>Hódmezővásárhely-Aranyág</td>
+							<td>Römische Kaiserzeit, Spätbronzezeit</td>
+							<td>2017–2018</td>
+							<td>Gräberfeld und Siedlung</td>
+							<td>207.056 Quadratmeter</td>
+							<td>PDF-Dokument</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="formular_volontaere">
+			<div class="formular_text">
+				<h3>Freiwillige gesucht</h3>
+				<p>Wenn Sie sich für die Altertümer Österreichs interessieren, eine sehr gute gesundheitliche
+					Verfassung und eine gute Kondition sowie Freude an körperlicher Betätigung haben und gut mit
+					Hitze umgehen können, wird Ihnen eine Grabung in Österreich ein unvergessliches Erlebnis bieten.
+					Spezielle Fachkenntnisse oder Ausgrabungserfahrung brauchen Sie nicht mitzubringen, wohl aber
+					eine gute Portion Abenteuerlust und Neugier.</p>
+				<h2 id="flip">Bewirb dich jetzt! (Hier klicken)</h2>
+			</div>
+
+			<div class="formular" id="panel">
+				<h2>Anmeldeformular</h2>
+				<form method="post">
+					<fieldset>
+						<legend>Angaben</legend>
+
+						<label for="emailadresse">Emailadresse:</label>
+						<input type="email" placeholder="Ihre Emailadresse" name="Emailadresse" id="emailadresse" required>
+						<br>
+
+						<label for="VN">Vorname:</label>
+						<input type="text" name="Vorname" placeholder="Ihr Vorname" id="VN">
+						<br>
+
+						<label for="NN">Nachname:</label>
+						<input type="text" name="Nachname" placeholder="Ihr Nachname" id="NN">
+						<br>
+
+						<label for="gebdatum">Geburtsdatum:</label>
+						<input type="date" name="GebDatum" id="gebdatum">
+						<br>
+
+						<label for="gebland">Geburtsland:</label>
+						<select name="GebLand" id="gebland">
+							<option value="AT">Österreich</option>
+							<option value="HU">Ungarn</option>
+							<option value="CZ">Tschechien</option>
+							<option value="ES">Spanien</option>
+						</select>
+						<br>
+					</fieldset>
+						<fieldset>
+							<legend>Geschlecht</legend>
+							<label>
+								<input type="radio" name="Geschlecht" value="weiblich" checked>
+								weiblich
+							</label>
+							<label>
+								<input type="radio" name="Geschlecht" value="männlich">
+								männlich
+							</label>
+							<label>
+								<input type="radio" name="Geschlecht" value="divers">
+								divers
+							</label>
+						</fieldset>
+					
+
+					<label for="nachricht">Ihre Nachricht an uns:</label>
+					<textarea name="Nachricht" id="nachricht"
+						placeholder="Was Sie uns schon immer sagen wollten, aber nie zu sagen wagten"></textarea>
+					<br>
+
+					<label>
+						<input type="checkbox" name="AGB" value="ja">
+						Ich akzeptiere die Allgemeinen Geschäftsbedingungen
+					</label>
+					<br>
+
+					<label>
+						<input type="checkbox" name="Newsletter" value="ja">
+						Ich willige ein, den Newsletter der ArchaeoSchild GmbH zu erhalten
+					</label>
+					<br>
+
+					<input type="submit" value="Abschicken">
+				</form>
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<div class="kontakt_container" id="kontakt">
+			<div class="kontakt_container1">
+				<h3>Kontakt</h3>
+			</div>
+			<div class="logo_img">Platz für Logo</div>
+			<div class="kontakt_container2">
+				<h2>ArchaeoSchild GmbH</h2>
+				<p>
+					Kressweg 14<br>
+					4020 Linz<br>
+					<a href="mailto:laci528@gmail.com">laci528@gmail.com</a><br>
+					<a href="tel:+436763750845">+43 676 3750845</a>
+				</p>
+				<div class="socialm_contener">
+					<a href="https://www.facebook.com/">Facebook</a>
+					<a href="https://www.instagram.com/">Instagram</a>
+					<a href="https://www.linkedin.com/">LinkedIn</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+
+</html>
